@@ -10,7 +10,7 @@ let outputMin = 0;
 let outputMax = 255;
 
 let outputValue
-let inputValue 
+let inputValue
 //Temperatur zu Farbe
 
 
@@ -29,17 +29,16 @@ function setup() {
 
 function draw() {
 
- inputValue = valueSlider.value();
-
+  inputValue = valueSlider.value();
   outputValue = map(inputValue, inputMin, inputMax, outputMin, outputMax);
 
- // let kreisoutputvalue = map(inputValue, inputMin, inputMax, outputMax, outputMin)
+  // let kreisoutputvalue = map(inputValue, inputMin, inputMax, outputMax, outputMin)
 
   background(outputValue);
 
   fill(255 - outputValue)
   noStroke()
-  ellipse(200, 200, 400, 400)
+  rect(200, 200, 400, 400)
 
 
   // fill (outputValue, 100,100);
