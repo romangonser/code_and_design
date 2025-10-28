@@ -6,10 +6,11 @@ let horizontalstroke;
 let winkel;
 let kreis;
 let imputsliderkreis;
-let sliderkreismin;
-let sliderkreismax;
-let outputrundmin;
-let outputrundmax;
+let sliderkreismin = 0;
+let outputrundmin = 0;
+let sliderkreismax = 200;
+
+let rund;
 
 
 
@@ -39,13 +40,14 @@ function setup() {
 function draw() {
   //background(200, 220, 255,);
   background(0, 0, 0,);
+  let outputrundmax = durchmesser.value();
 
-  let d = durchmesser.value();
 
   inputkreis = kreis.value();
   rund = map(inputkreis, sliderkreismin, sliderkreismax, outputrundmin, outputrundmax);
 
-  let sliderkreismax = d
+
+  let d = durchmesser.value();
   let Vstroke = verticalstroke.value();
   let Hstroke = 400 - verticalstroke.value();
   let drehen = 0; //winkel.value();
