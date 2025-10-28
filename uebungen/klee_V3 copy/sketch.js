@@ -4,16 +4,13 @@ let durchmesser;
 let verticalstroke;
 let horizontalstroke;
 let winkel;
-let kreis
+let kreis;
+let imputsliderkreis;
+let sliderkreismin;
+let sliderkreismax;
+let outputrundmin;
+let outputrundmax;
 
-let kreisinputMin = 0
-let kreisinputMax = 100
-
-let rundoutputValueMin
-let rundoutputValueMax
-
-let rundoutputValue
-let kreisinputValue
 
 
 
@@ -29,15 +26,12 @@ function setup() {
   verticalstroke.position(230, 10);
 
 
-  kreis = createSlider(0, 100, 50);
+  kreis = createSlider(0, 200, 100);
   kreis.position(430, 10);
 
 
   //winkel = createSlider(-45, 45, 0)
   //winkel.position(600, 10);
-
-
-
 
 }
 
@@ -48,76 +42,74 @@ function draw() {
 
   let d = durchmesser.value();
 
+  inputkreis = kreis.value();
+  rund = map(inputkreis, sliderkreismin, sliderkreismax, outputrundmin, outputrundmax);
 
-  kreisinputValue = kreis.value();
-  rundoutputValue = map(kreisinputValue, kreisinputMin, kreisinputMax, rundoutputValueMin, rundoutputValueMax);
-
-rundoutputValueMin = 0
-rundoutputValueMax = d
-
-if (rundoutputValue < d) {rundoutputValue = 0 }
- 
+  let sliderkreismax = d
   let Vstroke = verticalstroke.value();
   let Hstroke = 400 - verticalstroke.value();
   let drehen = 0; //winkel.value();
 
 
-  fill(255, 0, 0, 100)
-  noStroke()
+
+
+  fill(255, 100)
+  strokeWeight(2)
+  stroke(255, 100)
   rectMode(CENTER)
 
   push();
   translate(200, 200);
   rotate(drehen);
-  rect(0, 0, d, d, d - rundoutputValue);
+  rect(0, 0, d, d, d - rund);
   pop();
 
   push();
   translate(200, 400);
   rotate(drehen);
-  rect(0, 0, d, d, rundoutputValue);
+  rect(0, 0, d, d, rund);
   pop();
 
   push();
   translate(200, 600);
   rotate(drehen);
-  rect(0, 0, d, d, d - rundoutputValue);
+  rect(0, 0, d, d, d - rund);
   pop();
 
   push();
   translate(400, 200);
   rotate(drehen);
-  rect(0, 0, d, d, rundoutputValue);
+  rect(0, 0, d, d, rund);
   pop();
 
   push();
   translate(400, 400);
   rotate(drehen);
-  rect(0, 0, d, d, d - rundoutputValue);
+  rect(0, 0, d, d, d - rund);
   pop();
 
   push();
   translate(400, 600);
   rotate(drehen);
-  rect(0, 0, d, d, rundoutputValue);
+  rect(0, 0, d, d, rund);
   pop();
 
   push();
   translate(600, 200);
   rotate(drehen);
-  rect(0, 0, d, d, d - rundoutputValue);
+  rect(0, 0, d, d, d - rund);
   pop();
 
   push();
   translate(600, 400);
   rotate(drehen);
-  rect(0, 0, d, d, rundoutputValue);
+  rect(0, 0, d, d, rund);
   pop();
 
   push();
   translate(600, 600);
   rotate(drehen);
-  rect(0, 0, d, d, d - rundoutputValue);
+  rect(0, 0, d, d, d - rund);
   pop();
 
 
