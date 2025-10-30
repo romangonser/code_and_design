@@ -9,6 +9,11 @@ let imputsliderkreis;
 let sliderkreismin = 0;
 let outputrundmin = 0;
 let sliderkreismax = 200;
+let mitte = 0;
+let button
+
+
+
 
 let rund;
 
@@ -30,6 +35,10 @@ function setup() {
   kreis = createSlider(0, 200, 100);
   kreis.position(430, 10);
 
+  button = createButton('try me');
+  button.position(620, 10);
+
+  button.mousePressed(verschieben)
 
   //winkel = createSlider(-45, 45, 0)
   //winkel.position(600, 10);
@@ -52,6 +61,7 @@ function draw() {
   let Hstroke = 400 - verticalstroke.value();
   let drehen = 0; //winkel.value();
 
+  
 
 
 
@@ -63,55 +73,55 @@ function draw() {
   push();
   translate(200, 200);
   rotate(drehen);
-  rect(0, 0, d, d, d - rund);
+  rect(mitte, mitte, d, d, d - rund);
   pop();
 
   push();
   translate(200, 400);
   rotate(drehen);
-  rect(0, 0, d, d, rund);
+  rect(mitte, mitte, d, d, rund);
   pop();
 
   push();
   translate(200, 600);
   rotate(drehen);
-  rect(0, 0, d, d, d - rund);
+  rect(mitte, mitte, d, d, d - rund);
   pop();
 
   push();
   translate(400, 200);
   rotate(drehen);
-  rect(0, 0, d, d, rund);
+  rect(mitte, mitte, d, d, rund);
   pop();
 
   push();
   translate(400, 400);
   rotate(drehen);
-  rect(0, 0, d, d, d - rund);
+  rect(mitte, mitte, d, d, d - rund);
   pop();
 
   push();
   translate(400, 600);
   rotate(drehen);
-  rect(0, 0, d, d, rund);
+  rect(mitte, mitte, d, d, rund);
   pop();
 
   push();
   translate(600, 200);
   rotate(drehen);
-  rect(0, 0, d, d, d - rund);
+  rect(mitte, mitte, d, d, d - rund);
   pop();
 
   push();
   translate(600, 400);
   rotate(drehen);
-  rect(0, 0, d, d, rund);
+  rect(mitte, mitte, d, d, rund);
   pop();
 
   push();
   translate(600, 600);
   rotate(drehen);
-  rect(0, 0, d, d, d - rund);
+  rect(mitte, mitte, d, d, d - rund);
   pop();
 
 
@@ -130,3 +140,10 @@ function draw() {
 
 
 }
+
+ function verschieben() {
+mitte = random(-50, 50);
+
+
+  }
+
