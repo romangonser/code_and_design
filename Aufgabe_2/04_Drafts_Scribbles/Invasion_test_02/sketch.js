@@ -1,6 +1,7 @@
-let posX, posY;
+let posX, posY; // position Zeichnen ellipse-wirt
 let startX, startY; // Nullpunkt des aktuellen "Wirts"
 let maxRadius = 50; // Radius bevor neuer Wirt entsteht
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -32,7 +33,24 @@ function draw() {
     posX = startX;
     posY = startY;
   }
+
+  // wenn ein neuer wirt auf einer schon bestehendem wirt kommt,
+  // neue Farbe kreiieren.
+  // if () {
+  // }
+
+//mouse interaktion
+if(mouseIsPressed) {
+
+   fill(200, 0, 100, 150);
+  noStroke();
+  ellipse(mouseX, mouseY, 10, 10);
+  
+ } 
 }
+
+
+
 
 
   // if (distanceFromStart > maxRadius) {
