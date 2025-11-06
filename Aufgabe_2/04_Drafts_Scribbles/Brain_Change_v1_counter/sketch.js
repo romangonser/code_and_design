@@ -16,6 +16,7 @@ function setup() {
 
   colorMode(HSB, 360, 100, 100, 100)
   newColor = color(random(0, 360), 100, 100, t);
+  //blendMode(SCREEN);
 
   // Ersten Wirt poition
   startX = random(width);
@@ -35,6 +36,8 @@ function setup() {
 
 function draw() {
   background(0, 1)
+
+  //background(0, 10)
 
 
 
