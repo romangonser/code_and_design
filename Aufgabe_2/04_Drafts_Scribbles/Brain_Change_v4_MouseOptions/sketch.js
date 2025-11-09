@@ -1,14 +1,20 @@
 let posX, posY;
 let startX, startY;
-let maxRadius = 60;
+let maxRadius = 60
+let KreisD = 15
 let wirt;
 let punkt1, punkt2;
+let multidist
 let t = 20 // transparenz 
 let newColor
 let zähler = {}
+let timer = 0
 
 let alleFormen = [];
 let animationLäuft = true;
+
+
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -32,23 +38,31 @@ function setup() {
   //background(0, 0, 0, 95)
 
 
+
 }
 
 function draw() {
   background(0, 1)
 
+
   //background(0, 10)
 
 
-
-
+       if (timer > 0) {
+    timer--;
+    // Timer läuft - behalte multidist = 100
+  } else {
+    // Timer abgelaufen - zurück auf normal
+    multidist = 10;
+   strokeWeight(random(0.5, 5));
+  }
 
 
   // ohne click Schlaufe
   posX += random(-10, 10);
   posY += random(-10, 10);
   wirt = createVector(posX, posY);
-  wirt.add(p5.Vector.random2D().mult(8));
+  wirt.add(p5.Vector.random2D().mult(multidist));
 
   //test, ob an der zielposition wirt.x, wirt.y bereits Farbe liegt und welche
 let c = get(wirt.x, wirt.y);
@@ -73,7 +87,7 @@ if (zähler[key] > 50) {
   newColor = color(random(0,360), 100,100,t);
   zähler[key] = 0;
 }
-
+console.log (zähler)
 fill(newColor);
 stroke(newColor);
 
@@ -115,7 +129,7 @@ stroke(newColor);
       wirt.x + 10, wirt.y + 10);
   } else {
     // Maus auf der linken Seite = Kreis
-    ellipse(wirt.x, wirt.y, 15, 15);
+    circle(wirt.x, wirt.y, KreisD);
   }
 
 
@@ -150,5 +164,15 @@ function mousePressed() {
   posY = startY;
 
 
+}
+
+
+//wird bei doppelklick ausgeführt
+
+
+function doubleClicked (){
+   multidist = 100;
+  timer = 15;
+  strokeWeight(random(7, 10));
 }
 
