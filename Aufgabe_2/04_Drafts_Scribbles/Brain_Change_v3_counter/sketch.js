@@ -85,21 +85,20 @@ stroke(newColor);
   let distanceFromStart = dist(wirt.x, wirt.y, startX, startY);
 
   // Wenn Radius größer als maxRadius, neuen Wirt erstellen
-  if (distanceFromStart > maxRadius) {
+ if (distanceFromStart > maxRadius) {
     punkt1 = punkt2.copy();
     punkt2 = createVector(posX, posY);
 
+    // Linie zeichnen ZUERST
+    stroke(newColor);
+    strokeWeight(random(0.5, 5));
+    line(punkt1.x, punkt1.y, punkt2.x, punkt2.y);
 
-    // Neuen Wirt erstellen (wenn dieser Teil vor Linie Zeichnen ist, Linie wird zuerst gezeichnet)
+    // DANN neuen Wirt erstellen
     startX = random(width);
     startY = random(height);
     posX = startX;
     posY = startY;
-
-    // Linie zeichnen
-    stroke(newColor);
-    strokeWeight(random(0.5, 5));
-    line(punkt1.x, punkt1.y, punkt2.x, punkt2.y);
 
 
   }
