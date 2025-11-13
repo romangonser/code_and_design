@@ -41,6 +41,8 @@ function setup() {
 function draw() {
 
 
+
+
 blendMode(DIFFERENCE)
 noStroke;
 fill(0, 0, 0, 0.5)
