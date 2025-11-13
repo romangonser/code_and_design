@@ -1,3 +1,5 @@
+let distanzpunkt;[]
+let mouseradius = 200
 let posX, posY;
 let startX, startY;
 let maxRadius = 60
@@ -27,8 +29,12 @@ function setup() {
 
   // Ersten Wirt poition
  
-  do {startX = random(width);startY = random(height);
-  }while (dist(startX, startY, mouseX, mouseY) < mousedist);
+  let minAbstandZurMaus = 200;  // NEUE ZEILE
+  
+  do {
+    startX = random(width);
+    startY = random(height);
+  } while (dist(startX, startY, mouseX, mouseY) < minAbstandZurMaus);
  
  posX = startX;
   posY = startY;
@@ -66,6 +72,8 @@ function draw() {
     posX = mouseX;
     posY = mouseY;
     wirt = createVector(posX, posY);
+    stroke(0,0,0,0);
+
     //KreisD = random(5, 25)
   } else {
     // Normale Animation ohne Mausklick
@@ -73,6 +81,7 @@ function draw() {
     posY += random(-10, 10);
     wirt = createVector(posX, posY);
     wirt.add(p5.Vector.random2D().mult(8));
+    stroke(newColor);
     //KreisD = 15
    
   }
@@ -118,23 +127,50 @@ stroke(newColor);
   let distanceFromStart = dist(wirt.x, wirt.y, startX, startY);
 
   // Wenn Radius größer als maxRadius, neuen Wirt erstellen
- if (distanceFromStart > maxRadius) {
+// Wenn Radius größer als maxRadius, neuen Wirt erstellen
+if (distanceFromStart > maxRadius) {
     punkt1 = punkt2.copy();
     punkt2 = createVector(posX, posY);
 
-    // Linie zeichnen ZUERST
+    // Linie zeichnen
     stroke(newColor);
     strokeWeight(random(0.5, 5));
     line(punkt1.x, punkt1.y, punkt2.x, punkt2.y);
 
-    // DANN neuen Wirt erstellen
-    startX = random(width);
-    startY = random(height);
+    // Neuen Wirt erstellen mit zwei Bedingungen
+    let versuch = 0;
+    let gefunden = false;
+    let maxAbstandZumAlten = 200;  // Max. Abstand zum alten Punkt
+    let minAbstandZurMaus = 200;   // Min. Abstand zur Maus
+    
+    while (!gefunden && versuch < 100) {
+      let neuerStartX = random(width);
+      let neuerStartY = random(height);
+      
+      // Abstand zum alten Punkt prüfen
+      let abstandZumAlten = dist(neuerStartX, neuerStartY, wirt.x, wirt.y);
+      
+      // Abstand zur Maus prüfen
+      let abstandZurMaus = dist(neuerStartX, neuerStartY, mouseX, mouseY);
+      
+      // BEIDE Bedingungen müssen erfüllt sein
+      if (abstandZumAlten <= maxAbstandZumAlten && abstandZurMaus >= minAbstandZurMaus) {
+        startX = neuerStartX;
+        startY = neuerStartY;
+        gefunden = true;
+      }
+      versuch++;
+    }
+    
+    // Fallback wenn nichts gefunden
+    if (!gefunden) {
+      startX = random(width);
+      startY = random(height);
+    }
+    
     posX = startX;
     posY = startY;
-
-
-  }
+}
 
   // Wirt zeichnen
   noStroke();
@@ -152,8 +188,9 @@ stroke(newColor);
   }
 
 
-
 }
+
+
 
 // Wird bei jedem Mausklick ausgeführt
 
@@ -198,3 +235,31 @@ function doubleClicked (){
 
 
 
+// let punkte = [];
+// let maxAbstand = 100;
+
+// function setup() {
+//   createCanvas(400, 400);
+//   // Erster Punkt
+//   punkte.push(createVector(random(width), random(height)));
+// }
+
+// function draw() {
+//   background(220);
+  
+//   // Neuen zufälligen Punkt erstellen
+//   let neuerPunkt = createVector(random(width), random(height));
+//   let letzterPunkt = punkte[punkte.length - 1];
+  
+//   // Distanz prüfen
+//   let abstand = dist(neuerPunkt.x, neuerPunkt.y, letzterPunkt.x, letzterPunkt.y);
+  
+//   if (abstand <= maxAbstand) {
+//     punkte.push(neuerPunkt);  // Nur hinzufügen wenn nah genug
+//   }
+  
+//   // Alle Punkte zeichnen
+//   for (let p of punkte) {
+//     circle(p.x, p.y, 10);
+//   }
+// }
