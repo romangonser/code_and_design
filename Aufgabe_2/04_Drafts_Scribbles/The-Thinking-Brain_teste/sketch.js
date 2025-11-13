@@ -20,12 +20,12 @@ function setup() {
   newColor = color(random(0, 360), 100, 100, t);
 
   // Ersten Wirt poition
-  let minAbstandzurMaus = 200;
+  let minAbstandZurMaus = 200;
 
   do {
     startX = random(width);
     startY = random(height);
-  } while (dist(startX, startY, mouseX, mouseY) < minAbstandzurMaus);
+  } while (dist(startX, startY, mouseX, mouseY) < minAbstandZurMaus);
 
   posX = startX;
   posY = startY;
@@ -40,12 +40,14 @@ function setup() {
 
 function draw() {
 
-  //background(0, 0, 80, 0.5);
 
-  if (frameCount % 10 === 0) {
-    filter(GRAY);
-  } else {
-
+blendMode(DIFFERENCE)
+noStroke;
+fill(0, 0, 0, 0.5)
+rect(0, 0, width, height)
+noStroke;
+fill(0, 0, 100, .5)
+rect(0, 0, width, height)
 
     if (timer > 0) {
       timer--;
@@ -113,7 +115,7 @@ function draw() {
       let versuch = 0;
       let gefunden = false;
       let maxAbstandZumAlten = 200;  // Max. Abstand zum alten Punkt
-      let minAbstandzurMaus = 200;   // Min. Abstand zur Maus
+      let minAbstandZurMaus = 200;   // Min. Abstand zur Maus
 
       while (!gefunden && versuch < 100) {
         let neuerStartX = random(width);
@@ -126,7 +128,7 @@ function draw() {
         let abstandZurMaus = dist(neuerStartX, neuerStartY, mouseX, mouseY);
 
         // BEIDE Bedingungen müssen erfüllt sein
-        if (abstandZumAlten <= maxAbstandZumAlten && abstandZurMaus >= minAbstandzurMaus) {
+        if (abstandZumAlten <= maxAbstandZumAlten && abstandZurMaus >= minAbstandZurMaus) {
           startX = neuerStartX;
           startY = neuerStartY;
           gefunden = true;
@@ -145,13 +147,12 @@ function draw() {
     }
 
     // Wirt zeichnen
-
-     noStroke();
+    noStroke();
     fill(newColor);
     circle(wirt.x, wirt.y, KreisD);
 
   }
-}
+
 
 
 // Wird bei jedem Mausklick ausgeführt
