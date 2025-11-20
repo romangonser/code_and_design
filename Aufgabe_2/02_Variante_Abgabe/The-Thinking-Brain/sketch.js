@@ -40,7 +40,7 @@ function setup() {
 
 function draw() {
 
-  //background(0, 0, 80, 0.5);
+  //background(0, 0, 0, 0.5);
 
   if (frameCount % 10 === 0) {
     filter(GRAY);
@@ -62,7 +62,6 @@ function draw() {
       wirt = createVector(posX, posY);
       stroke(0, 0, 0, 0);
 
-      //KreisD = random(5, 25)
     } else {
       // Normale Animation ohne Mausklick
       posX += random(-10, 10);
@@ -70,7 +69,6 @@ function draw() {
       wirt = createVector(posX, posY);
       wirt.add(p5.Vector.random2D().mult(8));
       stroke(newColor);
-      //KreisD = 15
 
     }
 
